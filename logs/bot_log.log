@@ -1,0 +1,27 @@
+import logging
+import os
+
+# Set up log directory
+log_dir = os.path.join(os.getcwd(), 'logs')
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+# Create a log file named 'bot_log.log'
+log_file = os.path.join(log_dir, 'bot_log.log')
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,  # Set default level to INFO
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),  # Log to a file
+        logging.StreamHandler()         # Log to the console (optional)
+    ]
+)
+
+def get_logger():
+    """
+    Returns a logger instance
+    """
+    return logging.getLogger()
+
